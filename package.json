@@ -1,0 +1,43 @@
+{
+  "name": "nodetest",
+  "version": "0.0.1",
+  "author": "dsi",
+  "license": "UNLICENSED",
+  "description": "node test project",
+  "repository": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "build": "webpack --config webpack.config.js --optimize-minimize",
+    "watchbuild": "webpack --config webpack.config.js --watch --optimize-minimize",
+    "devserver": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --optimize-minimize --progress --colors --hot --content-base public"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "sequelize": "^4.37.1",
+    "winston": "^3.0.0-rc1"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.0.6",
+    "json-loader": "^0.5.7",
+    "node-sass": "^4.7.2",
+    "react-hot-loader": "^4.0.0",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
+  }
+}
