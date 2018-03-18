@@ -1,60 +1,56 @@
 import React from 'react';
 
-import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Drawer from 'material-ui/Drawer';
+
 import IconButton from 'material-ui/IconButton';
+import Drawer from 'material-ui/Drawer';
 
-import lightgreen from 'material-ui/colors/lightGreen';
-import orange from 'material-ui/colors/orange';
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 
-import MenuIcon from 'material-ui-icons/Menu';
+import User from './User';
 
-//import User from './User';
-
-const theme = createMuiTheme({
+const muiTheme = getMuiTheme({
   palette: {
-    primary: lightgreen,
-    secondary: orange
+    primary1Color: '#7cb342',
+    primary2Color: '#aee571',
+    primary3Color: '#4b830d',
+    accent1Color: '#33691e',
+    accent2Color: '#629749',
+    accent3Color: '#003d00'
   }
 });
 
 class App extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       open: false
     };
   }
 
-  toggleMenu(bool) {
+  toggleMenu() {
     this.setState({
-      open: (bool !== undefined ? bool : !this.state.open)
+      open: !this.state.open
     })
   }
 
   render() {
-    return (<MuiThemeProvider theme={theme}>
+    return <MuiThemeProvider muiTheme={muiTheme}>
       <div className="App">
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton aria-label="Menu"
-              onClick={() => this.toggleMenu()}
-            >
-              <MenuIcon/>
-            </IconButton>
-            <Typography variant="title">
-              Title
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer open={this.state.open} onClose={this.toggleMenu(false)}></Drawer>
+        <AppBar title="Title" iconElementLeft={<IconButton onClick = {
+            () => this.toggleMenu()
+          } > <MenuIcon/>
+        </IconButton>}></AppBar>
+        <Drawer docked={false} open={this.state.open} onRequestChange={(open) => this.setState({open})}></Drawer>
+        <div className="content">
+          <User apiUrl={this.props.apiUrl}/>
+        </div>
       </div>
-    </MuiThemeProvider>);
+    </MuiThemeProvider>;
   }
 
 };

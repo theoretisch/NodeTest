@@ -52,7 +52,7 @@ Object.keys(db.models).forEach(modelName => {
     db.models[modelName].associate(db);
   }
 });
-
+sequelize.sync({sync: true})
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

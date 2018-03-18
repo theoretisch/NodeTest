@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSass = new ExtractTextPlugin({
   filename: 'css/bundle.css'
 });
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {

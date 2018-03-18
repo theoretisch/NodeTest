@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./theme/font/roboto-v18-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Roboto'), local('Roboto-Regular'),
+       url('./theme/font/roboto-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./theme/font/roboto-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./theme/font/roboto-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./theme/font/roboto-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./theme/font/roboto-v18-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+$primary1Color: #7cb342;
+$primary2Color: #aee571;
+$primary3Color: #4b830d;
+$accent1Color: #33691e;
+$accent2Color: #629749;
+$accent3Color: #003d00;

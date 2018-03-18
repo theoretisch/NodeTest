@@ -1,12 +1,9 @@
-console.log('starting server, loading modules');
-
 const fs = require('fs');
 const path = require('path');
 const loggerModule = require('./modules/logger');
 const express = require('express');
+const bodyParser = require("body-parser");
 const Sequelize = require('sequelize');
-
-console.log(' - modules finished');
 
 let Server = {
   config: {
@@ -24,7 +21,6 @@ let Server = {
 }
 
 Server.db = require('./database');
-console.log(Server.db.model);
 
 try {
   const configFile = fs.readFileSync(path.resolve(__dirname, 'config/logger.json'), {'encoding': 'UTF-8'});
@@ -50,6 +46,15 @@ try {
 }
 
 Server.express = express();
+
+Server.express.use(bodyParser.json());
+
+Server.express.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type');
+  next();
+});
 
 require('./routes')(Server);
 

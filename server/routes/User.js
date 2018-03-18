@@ -1,17 +1,19 @@
 module.exports = (Server) => {
   const User = Server.db.models.user;
-  Server.express.get('/user/:id?', function(req, res) {
+  const Op = Server.db.Sequelize.Op;
+
+  Server.express.get('/user(/:loginName)?', function(req, res) {
+    const filter = req.params.loginName;
     let where = {};
-    if (req.params.id !== undefined) {
+    if (filter !== undefined) {
       where = {
-        id: req.params.id
+        loginName: filter
       }
     }
 
     User.findAndCountAll({where}).then((result) => {
-      Server.log.info('get user', result);
       if (result.count > 0) {
-        res.send('get user');
+        res.status(200).send(result);
       } else {
         res.sendStatus(404);
       }
@@ -22,13 +24,25 @@ module.exports = (Server) => {
   });
 
   Server.express.post('/user', function(req, res) {
-    User.create({firstName: req.params.firstName, lastName: req.params.lastName, loginName: req.params.loginName, password: req.params.password});
-
-    Server.log.info('post user', req.params);
-    res.send('post user');
+    const buildUser = User.build({firstName: req.body.firstName, lastName: req.body.lastName, loginName: req.body.loginName, password: req.body.password});
+    buildUser.validate().then((validatedUser) => {
+      validatedUser.save().then((savedUser) => {
+        res.status(201).send(savedUser.toJSON());
+      }).catch((error) => {
+        console.log(error.message);
+        res.sendStatus(500);
+      });
+    }).catch((error) => {
+      let messages = [];
+      Server.log.error(error);
+      error.errors.forEach((error) => {
+        messages[error.instance.rawAttributes[error.path].name] = error.message;
+      });
+      res.status(400).send(messages);
+    });
   });
 
-  Server.express.put('/user/:id', function(req, res) {
+  Server.express.patch('/user/:id', function(req, res) {
     Server.log.info('put user', req.params);
     res.send('put user');
   });
