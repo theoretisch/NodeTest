@@ -1,0 +1,10 @@
+{
+  "username": "website",
+  "password": "website",
+  "host": "127.0.0.1",
+  "port": 5432,
+  "database": "website",
+  "dialect": "postgres",
+  "connectRetryTimeout": 5000,
+  "connectRetries": 3
+}

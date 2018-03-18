@@ -4,22 +4,31 @@
   "author": "dsi",
   "license": "UNLICENSED",
   "description": "node test project",
+  "homepage": "C:/Users/Daniel/Documents/GitHub/NodeTest",
   "repository": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "webpack --config webpack.config.js --optimize-minimize",
-    "watchbuild": "webpack --config webpack.config.js --watch --optimize-minimize",
-    "devserver": "./node_modules/.bin/webpack-dev-server --config webpack.config.js --optimize-minimize --progress --colors --hot --content-base public"
+    "start": "nodemon server/index.js",
+    "build": "webpack --config dev-tools/webpack.config.js --optimize-minimize --progress",
+    "watch": "webpack --config dev-tools/webpack.config.js --watch --optimize-minimize --progress",
+    "start-dev": "./node_modules/.bin/webpack-dev-server --config dev-tools/webpack.config.js --optimize-minimize --progress --colors --hot --content-base public",
+    "start-react": "react-scripts start",
+    "build-react": "react-scripts build",
+    "test-react": "react-scripts test --env=jsdom",
+    "reject-react": "react-scripts eject"
   },
   "dependencies": {
     "express": "^4.16.2",
+    "material-ui": "^1.0.0-beta.38",
+    "material-ui-icons": "^1.0.0-beta.36",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-scripts": "^1.1.1",
+    "react-transition-group": "^1.1.2",
     "sequelize": "^4.37.1",
+    "webfontloader": "^1.6.28",
     "winston": "^3.0.0-rc1"
   },
   "devDependencies": {
